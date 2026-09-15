@@ -27,9 +27,9 @@ workflow back to GitHub as a **check run**, and that is what the script reads.
 Repo: owner/name   Base: master   Branches scanned: 54 (since 2026-08-16)
 Deployed to prod, NOT merged into master: 1
 
-  feature/work-39809-dd-library-layout-updates
+  feature/library-layout-updates
     deployed: 2026-09-15T14:45:07Z   commits ahead: 7
-    PR: #9041 [open] DD :: Library Layout Updates — tetiana-husieva-op
+    PR: #9041 [open] Library layout updates — some-engineer
     https://github.com/owner/name/pull/9041
 ```
 

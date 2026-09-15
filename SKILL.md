@@ -9,14 +9,14 @@ Source: https://github.com/jackmparker/prod-not-merged
 
 Reports every branch that has a **successful production deploy** whose commits are **not contained in the default branch**.
 
-At ObservePoint, engineers deploy a feature branch to production before merging it. If the merge is forgotten, production runs code that is not in `master`. The next deploy from `master` silently reverts it. This skill finds that state.
+On teams that deploy this way, engineers deploy a feature branch to production before merging it. If the merge is forgotten, production runs code that is not in `master`. The next deploy from `master` silently reverts it. This skill finds that state.
 
 ## Run it
 
 Run the script from this skill's base directory:
 
 ```bash
-<skill-base-dir>/check-prod-drift.sh --repo observepoint/moonbeam --days 30
+<skill-base-dir>/check-prod-drift.sh --repo owner/name --days 30
 ```
 
 When installed the usual way, that path is
@@ -32,7 +32,7 @@ Options:
 | `--jobs <n>` | Parallel probes. Default 4. Raising it can trip GitHub secondary rate limits. |
 | `--json` | Machine-readable output, for chaining into Slack or a report. |
 
-A moonbeam scan over 30 days takes about 10 seconds.
+A 650-branch repo scanned over a 30-day window takes about 10 seconds.
 
 ## How it decides
 
@@ -44,9 +44,9 @@ A moonbeam scan over 30 days takes about 10 seconds.
 
 Authentication is the `gh` CLI only. CircleCI needs no token, because CircleCI reports each workflow back to GitHub as a check run.
 
-## Repos other than moonbeam
+## Configure for your repo
 
-The `--pattern` default matches moonbeam's CircleCI workflow. For another repo, list the check-run names on a recent commit first:
+The `--pattern` default matches one CircleCI workflow name. For another repo, list the check-run names on a recent commit first:
 
 ```bash
 gh api "repos/<owner>/<name>/commits/<sha>/check-runs" --jq '.check_runs[].name'
