@@ -1,0 +1,17 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "prod-not-merged",
+  "description": "Find code that is deployed to production but not merged into the default branch.",
+  "owner": {
+    "name": "Jack Parker",
+    "url": "https://github.com/jackmparker"
+  },
+  "plugins": [
+    {
+      "name": "prod-not-merged",
+      "description": "Report every branch with a successful production deploy whose commits are missing from the default branch, with the open PR to merge.",
+      "source": "./",
+      "category": "deployment"
+    }
+  ]
+}

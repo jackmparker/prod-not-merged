@@ -1,0 +1,13 @@
+{
+  "name": "prod-not-merged",
+  "version": "1.0.0",
+  "description": "Find code that is deployed to production but not merged into the default branch. Reads GitHub check runs, so no CI token is needed.",
+  "author": {
+    "name": "Jack Parker",
+    "url": "https://github.com/jackmparker"
+  },
+  "homepage": "https://github.com/jackmparker/prod-not-merged",
+  "repository": "https://github.com/jackmparker/prod-not-merged",
+  "license": "MIT",
+  "keywords": ["deployment", "github", "release", "drift", "gh-cli"]
+}

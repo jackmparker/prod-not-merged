@@ -13,14 +13,12 @@ On teams that deploy this way, engineers deploy a feature branch to production b
 
 ## Run it
 
-Run the script from this skill's base directory:
+Run `check-prod-drift.sh` from this skill's base directory. The skill prompt states
+that directory; `${CLAUDE_PLUGIN_ROOT}/skills/prod-not-merged` also resolves to it.
 
 ```bash
-<skill-base-dir>/check-prod-drift.sh --repo owner/name --days 30
+"<skill-base-dir>/check-prod-drift.sh" --repo owner/name --days 30
 ```
-
-When installed the usual way, that path is
-`~/.claude/skills/prod-not-merged/check-prod-drift.sh`.
 
 Options:
 

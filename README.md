@@ -6,7 +6,7 @@ Some teams deploy a feature branch to production before merging it. When the mer
 forgotten, production runs code that no longer exists in `master`, and the next deploy
 from `master` silently reverts it. This tool finds that state.
 
-It is both a standalone shell script and a [Claude Code](https://claude.com/claude-code) skill.
+It is both a standalone shell script and a [Claude Code](https://claude.com/claude-code) plugin.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ workflow back to GitHub as a **check run**, and that is what the script reads.
 ## Use as a script
 
 ```bash
-./check-prod-drift.sh --repo owner/name --days 30
+./skills/prod-not-merged/check-prod-drift.sh --repo owner/name --days 30
 ```
 
 ```
@@ -43,16 +43,19 @@ Deployed to prod, NOT merged into master: 1
 
 A 650-branch repo scanned over a 30-day window takes about 10 seconds.
 
-## Use as a Claude Code skill
+## Use as a Claude Code plugin
 
-Clone the repo and link it into your skills directory:
+This repo is its own plugin marketplace. Inside Claude Code:
 
-```bash
-git clone git@github.com:jackmparker/prod-not-merged.git ~/Developer/prod-not-merged
-ln -s ~/Developer/prod-not-merged ~/.claude/skills/prod-not-merged
+```
+/plugin marketplace add jackmparker/prod-not-merged
+/plugin install prod-not-merged@prod-not-merged
 ```
 
-Then ask Claude "is anything deployed to prod but not merged in?", or run `/prod-not-merged`.
+Then ask "is anything deployed to prod but not merged in?", or run `/prod-not-merged`.
+
+To use the script on its own, clone the repo and run
+`skills/prod-not-merged/check-prod-drift.sh`.
 
 ## Configure for your repo
 
@@ -66,7 +69,7 @@ gh api "repos/<owner>/<name>/commits/<sha>/check-runs" --jq '.check_runs[].name'
 Then pass the production one:
 
 ```bash
-./check-prod-drift.sh --repo owner/name --pattern 'Deploy Production'
+./skills/prod-not-merged/check-prod-drift.sh --repo owner/name --pattern 'Deploy Production'
 ```
 
 ## How it decides
